@@ -1,0 +1,22 @@
+.card {
+    width: fit-content;
+}
+
+.img_card {
+    position: absolute;
+    width: fit-content;
+}
+
+.card_title {
+    position: relative;
+    width: 300px;
+    height: 60px;
+    line-height: 60px;
+    top: 140px;
+
+    text-align: center;
+    vertical-align: middle;
+    background: #dddddd;
+    opacity: 0.6;
+    font-size: x-large;
+}

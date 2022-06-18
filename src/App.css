@@ -1,38 +1,52 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Condensed:ital,wght@0,400;0,700;1,700&display=swap');
+
+.block {
+    display: flex;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.vtmn-navbar {
+    display: flex;
+    width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar_logo {
+    padding: 0 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+navbar_left-navigation {
+    padding: 0 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar_middle-area {
+    padding: 0 5px;
+    flex: max-content;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+navbar_right-navigation {
+    padding: 0 5px;
+}
+
+.vtmx-firstname {
+    font-family: "Roboto";
+}
+.app {
+    width: 100%;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+}
+
+.action-cards {
+    position: relative;
+    width: 100%;
+    height: 250px;
+}
+
+.rank-screen {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
