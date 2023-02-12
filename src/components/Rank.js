@@ -4,21 +4,28 @@ import {VtmnIcon, VtmnLoader} from "@vtmn/react";
 
 class Rank extends React.Component {
     constructor(props) {
-        console.log(props);
         super(props);
 
-        console.log(this.props);
         this.state = {
             users : null,
             isLoaded: false,
-            player1: props.player1,
-            player2: props.player2,
+            identity: props.identity,
             handleAddMatch: props.onAddMatch,
         };
+
+        console.log("Rank states : ")
+        console.log(this.state);
     }
 
     componentDidMount() {
-        fetch("http://localhost:8080/api/v1/users/user-ranking")
+        const token = this.state.identity.tokenType + " " + this.state.identity.accessToken;
+
+        fetch("http://localhost:8080/api/v1/users/user-ranking", {
+            method: 'GET',
+            headers: {
+                'Authorization': token,
+            }
+        })
             .then(res => res.json())
             .then(
                 (result) => {

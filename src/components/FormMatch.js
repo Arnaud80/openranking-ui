@@ -1,6 +1,6 @@
 import React from "react";
 import './Rank.css';
-import {VtmnButton, VtmnTextInput} from "@vtmn/react";
+import {VtmnButton, VtmnSelect, VtmnTextInput} from "@vtmn/react";
 //import axios from "axios";
 
 class FormMatch extends React.Component {
@@ -8,8 +8,8 @@ class FormMatch extends React.Component {
         super(props);
 
         this.state = {
-            firstNamePlayer1 : 'Player1',
-            firstNamePlayer2 : 'Player2',
+            firstNamePlayer1 : props.player1,
+            firstNamePlayer2 : props.player2,
             score: [
                 Array(2),
                 Array(2),
@@ -18,11 +18,30 @@ class FormMatch extends React.Component {
         };
     }
 
+    componentDidMount() {
+        fetch("http://localhost:8080/api/v1/users")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        users: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: false,
+                        error
+                    });
+                }
+            )
+    }
+
     handleChangeSet(event, set, player) {
         let score = this.state.score;
         score[set - 1][player - 1] = event.target.value;
 
-        alert(score);
+        //alert(score);
         this.setState(score);
     }
 
@@ -43,12 +62,23 @@ class FormMatch extends React.Component {
     }
 
     render() {
-        //const users = this.state.users;
+        const users = this.state.users;
         //const isLoaded = this.state.isLoaded;
 
         let form =
             <div className="identity">
             <form onSubmit={(event) => this.handleSubmitForm(event)}>
+                    <VtmnSelect
+                        border
+                        errorText="Error text goes here"
+                        id="select-player2"
+                        labelText="Competitor"
+                        options={[
+                            <option disabled selected value="sss">Select</option>,
+                            <option value="0">Cristina</option>,
+                            <option value="1">Aymeric</option>
+                         ]}
+                    />
                     <VtmnTextInput
                         identifier='set1-1'
                         type="text"

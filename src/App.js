@@ -24,7 +24,8 @@ class App extends React.Component {
             isConnected: true,
             userIdentity: response,
         });
-        console.log(response);
+        console.log("userIdentity : ")
+        console.log(this.state.userIdentity);
     }
 
     handleClickOnDisconnect() {
@@ -40,8 +41,10 @@ class App extends React.Component {
 
     render() {
         const isConnected = this.state.isConnected;
-        const firstName = this.state.userIdentity.firstname;
-        const firstName2 = "this.state.player2_firstName";
+        const identity = this.state.userIdentity;
+        console.log("identity = ");
+        console.log(identity);
+        //const firstName2 = "this.state.player2_firstName";
         return (
             isConnected ?
                 <div className="App">
@@ -51,7 +54,7 @@ class App extends React.Component {
                         middleArea={<VtmnSearch />}
                         rightNav={
                             <div className="block">
-                                <p className="vtmx-firstname">{firstName}</p>
+                                <p className="vtmx-firstname">{identity.firstname}</p>
                                 <VtmnButton
                                     iconAlone="user-line"
                                     size="medium"
@@ -84,9 +87,9 @@ class App extends React.Component {
                         </table>
                     </div>
                     <div className="rank-screen">
-                        <Rank player1="{firstName}" onAddMatch={this.handleAddMatch}></Rank>
+                        <Rank identity={identity} onAddMatch={this.handleAddMatch}></Rank>
                     </div>
-                    <div>
+                    <div className="form-match">
                         <FormMatch ></FormMatch>
                     </div>
                 </div>

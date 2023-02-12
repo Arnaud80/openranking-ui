@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import {VtmnButton, VtmnTextInput} from "@vtmn/react";
+import {VtmnButton, VtmnDivider, VtmnTextInput} from "@vtmn/react";
+import { GoogleLogin } from '@react-oauth/google';
 
 class Login extends React.Component {
     constructor(props) {
@@ -42,28 +43,49 @@ class Login extends React.Component {
         });
     }
 
+
+
     render() {
         return (
-            <form onSubmit={(event) => this.handleSubmitForm(event)}>
-                <div className="identity">
-                    <VtmnTextInput
-                        identifier='login'
-                        type="text"
-                        labelText="Login"
-                        placeholder="Type your login"
-                        value={this.state.username}
-                        onChange={(event) => this.handleChangeLogin(event)}/>
-                    <VtmnTextInput
-                        identifier='password'
-                        type="password"
-                        labelText="Password"
-                        placeholder="Type your password"
-                        value={this.state.password}
-                        onChange={(event) => this.handleChangePassword(event)}
+            <div>
+                <form onSubmit={(event) => this.handleSubmitForm(event)}>
+                    <div className="identity">
+                        <VtmnTextInput
+                            identifier='login'
+                            type="text"
+                            labelText="Login"
+                            placeholder="Type your login"
+                            value={this.state.username}
+                            onChange={(event) => this.handleChangeLogin(event)}/>
+                        <VtmnTextInput
+                            identifier='password'
+                            type="password"
+                            labelText="Password"
+                            placeholder="Type your password"
+                            value={this.state.password}
+                            onChange={(event) => this.handleChangePassword(event)}
+                        />
+                        <VtmnButton type="submit" value="Submit">Connect</VtmnButton>
+                    </div>
+                </form>
+                <VtmnDivider
+                    orientation="horizontal"
+                    textPosition="start"
+                >
+                    Or signIn with
+                </VtmnDivider>
+                <div>
+                    <GoogleLogin
+                        onSuccess={credentialResponse => {
+                            console.log(credentialResponse);
+                        }}
+                        onError={() => {
+                            console.log('Login Failed');
+                        }}
+                        useOneTap
                     />
-                    <VtmnButton type="submit" value="Submit">Connect</VtmnButton>
                 </div>
-            </form>
+            </div>
         );
     }
 }
